@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOTGP Herobrine · Football Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #f8efe5;
+      --muted: #c2aeb0;
+      --gold: #c99745;
+      --gold-soft: #f0ce83;
+      --violet: #bd6a83;
+      --line: rgba(226,181,101,.25);
+      --panel: rgba(43, 13, 24, .76);
+      --bg: #18070f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--bg);
+      font-family: "Space Grotesk", sans-serif; overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -2;
+      background:
+        radial-gradient(circle at 17% 16%, rgba(129,30,55,.42), transparent 28rem),
+        radial-gradient(circle at 83% 24%, rgba(201,151,69,.12), transparent 30rem),
+        radial-gradient(circle at 50% 95%, rgba(86,18,39,.35), transparent 33rem),
+        linear-gradient(135deg, #16060d 0%, #3b1020 52%, #10040a 100%);
+    }
+    body::after {
+      content: ""; position: fixed; inset: 0; opacity: .35; pointer-events: none; z-index: -1;
+      background-image: radial-gradient(#f0ce83 1px, transparent 1px);
+      background-size: 53px 53px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+    }
+    body::before { animation: backgroundBreathe 12s ease-in-out infinite alternate; }
+    body { background-image: linear-gradient(rgba(240,206,131,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(240,206,131,.025) 1px, transparent 1px); background-size: 84px 84px; background-position: center top; }
+    .madness-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: radial-gradient(ellipse at 50% 0%, rgba(124,22,54,.48), transparent 52%), #10040a; }
+    .madness-bg::before, .madness-bg::after { content:""; position:absolute; width:75vw; height:75vw; border-radius:50%; filter:blur(12px); mix-blend-mode:screen; }
+    .madness-bg::before { left:-25vw; top:10vh; background:conic-gradient(from 20deg, transparent 0 17%, rgba(197,80,105,.55) 20%, transparent 26% 39%, rgba(240,206,131,.22) 44%, transparent 50% 72%, rgba(111,22,58,.5) 79%, transparent 84%); animation: vortexOne 20s linear infinite; }
+    .madness-bg::after { right:-32vw; top:35vh; background:conic-gradient(from 210deg, transparent 0 15%, rgba(240,206,131,.38) 19%, transparent 25% 43%, rgba(168,44,87,.58) 49%, transparent 55% 74%, rgba(83,20,47,.5) 81%, transparent 87%); animation: vortexTwo 27s linear infinite reverse; }
+    .light-beams { position:absolute; inset:-20%; opacity:.45; background:linear-gradient(117deg, transparent 40%, rgba(240,206,131,.2) 42%, transparent 45%), linear-gradient(63deg, transparent 49%, rgba(195,70,100,.17) 51%, transparent 54%), linear-gradient(157deg, transparent 30%, rgba(240,206,131,.12) 31%, transparent 34%); animation: beams 13s ease-in-out infinite alternate; }
+    .floating-orb { position:absolute; width:260px; height:260px; left:48%; top:20%; border:1px solid rgba(240,206,131,.3); border-radius:50%; box-shadow:0 0 45px rgba(192,56,91,.22), inset 0 0 45px rgba(240,206,131,.12); transform:rotateX(67deg) rotateZ(18deg); animation: orbPulse 8s ease-in-out infinite; }
+    .floating-orb::before, .floating-orb::after { content:""; position:absolute; inset:18px; border:1px dashed rgba(240,206,131,.25); border-radius:50%; }
+    .floating-orb::after { inset:-34px; border-color:rgba(196,69,104,.18); transform:rotate(54deg); }
+    .spark-field { position:absolute; inset:0; background-image:radial-gradient(circle, rgba(240,206,131,.85) 0 1px, transparent 1.8px); background-size:91px 113px; opacity:.3; animation:sparkMove 18s linear infinite; }
+    .stadium-tunnel { position:absolute; inset:0; transform-style:preserve-3d; perspective:700px; }
+    .stadium-tunnel::before { content:""; position:absolute; left:50%; top:50%; width:58vw; height:58vw; transform:translate(-50%,-50%) rotateX(66deg); border:2px solid rgba(240,206,131,.28); border-radius:50%; box-shadow:0 0 0 42px rgba(190,47,84,.09), 0 0 0 86px rgba(240,206,131,.08), 0 0 75px rgba(240,206,131,.28); animation: stadiumSpin 18s linear infinite; }
+    .stadium-tunnel::after { content:""; position:absolute; left:50%; top:50%; width:110vw; height:110vw; transform:translate(-50%,-50%) rotateX(66deg); border:1px dashed rgba(240,206,131,.2); border-radius:50%; animation: stadiumSpin 30s linear infinite reverse; }
+    .laser-lines { position:absolute; inset:0; opacity:.42; background:linear-gradient(90deg, transparent 0 9%, rgba(219,73,112,.7) 9.1% 9.3%, transparent 9.4% 90.6%, rgba(240,206,131,.7) 90.7% 90.9%, transparent 91%), linear-gradient(164deg, transparent 44%, rgba(240,206,131,.38) 44.2% 44.45%, transparent 44.7% 55%, rgba(194,57,92,.45) 55.2% 55.45%, transparent 55.7%); animation: laserSweep 8s ease-in-out infinite alternate; }
+    main, header, footer { position:relative; z-index:2; }
+    .scene-3d { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; perspective: 900px; }
+    .scene-3d::before, .scene-3d::after { content: ""; position: absolute; border: 1px solid rgba(240,206,131,.22); border-radius: 50%; transform-style: preserve-3d; }
+    .scene-3d::before { width: 540px; height: 540px; top: 13vh; left: -180px; transform: rotateX(67deg) rotateZ(16deg); box-shadow: 0 0 55px rgba(190,51,83,.2), inset 0 0 50px rgba(240,206,131,.07); animation: orbitLeft 17s linear infinite; }
+    .scene-3d::after { width: 420px; height: 420px; right: -150px; top: 47vh; transform: rotateY(67deg) rotateZ(-18deg); box-shadow: 0 0 65px rgba(240,206,131,.16), inset 0 0 50px rgba(190,51,83,.12); animation: orbitRight 21s linear infinite reverse; }
+    .scene-core { position: absolute; width: 105px; height: 105px; right: 13%; top: 22%; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #ffe7a6, #c99745 20%, #651e35 55%, #210a15 78%); box-shadow: 0 0 36px rgba(240,206,131,.4), 0 0 110px rgba(190,51,83,.27); animation: coreFloat 6s ease-in-out infinite; }
+    .scene-core::before { content: ""; position: absolute; inset: -25px; border: 1px dashed rgba(240,206,131,.48); border-radius: 50%; transform: rotateX(68deg); animation: spin 12s linear infinite; }
+    .scene-dust { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: var(--gold-soft); box-shadow: 0 0 14px var(--gold); top: 32%; left: 34%; animation: dustDrift 9s ease-in-out infinite; }
+    .scene-dust::after { content: ""; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #e9689a; box-shadow: 0 0 12px #e9689a; left: 55vw; top: 33vh; }
+    .scene-3d span:nth-child(3), .scene-3d span:nth-child(4) { position:absolute; width:2px; height:2px; border-radius:50%; background:#f0ce83; box-shadow:0 0 12px #f0ce83; }
+    .scene-3d span:nth-child(3) { left:16%; top:62%; animation: dustBlink 4s ease-in-out infinite; }
+    .scene-3d span:nth-child(4) { right:27%; top:73%; animation: dustBlink 5.5s 1s ease-in-out infinite; }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1160px, calc(100% - 40px)); margin: auto; }
+    .mono, .eyebrow, .score, .table-pos { font-family: "DM Mono", monospace; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; gap: 12px; align-items: center; font-weight: 700; letter-spacing: .12em; }
+    .brand-mark { width: 32px; height: 32px; border: 1px solid var(--gold); border-radius: 50%; display: block; object-fit: cover; object-position: center; box-shadow: 0 0 16px rgba(201,151,69,.25); }
+    nav { display: flex; gap: 30px; color: var(--muted); font-size: 13px; }
+    nav a { transition: color .2s; } nav a:hover { color: var(--gold-soft); }
+    .hero { min-height: 620px; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; padding: 72px 0 80px; }
+    .eyebrow { color: var(--gold); letter-spacing: .22em; font-size: 11px; text-transform: uppercase; }
+    h1 { font-family: "Bodoni Moda", Georgia, serif; font-size: clamp(58px, 8.6vw, 118px); font-weight: 700; line-height: .86; letter-spacing: -.055em; margin: 20px 0 28px; max-width: 700px; text-transform: uppercase; text-shadow: 0 10px 36px rgba(0,0,0,.32); }
+    h1 em { color: var(--gold-soft); font-style: normal; display: block; font-size: 1.13em; letter-spacing: -.07em; text-shadow: 0 0 30px rgba(240,206,131,.23); }
+    .lead { max-width: 455px; color: var(--muted); line-height: 1.8; font: 500 15px/1.8 "Manrope", sans-serif; letter-spacing: -.01em; }
+    .hero-actions { display: flex; gap: 12px; margin-top: 35px; align-items: center; }
+    .pulse-strip { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(48,12,25,.42); }
+    .pulse-item { padding:18px 20px; border-right:1px solid var(--line); }
+    .pulse-item:last-child { border-right:0; }
+    .pulse-item strong { display:block; color:var(--gold-soft); font:22px "DM Mono"; }
+    .pulse-item span { display:block; color:var(--muted); font:9px "DM Mono"; letter-spacing:.08em; margin-top:5px; text-transform:uppercase; }
+    button, .button { font: inherit; cursor: pointer; }
+    .button { display: inline-flex; padding: 13px 20px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; border-radius: 2px; transition: transform .2s, box-shadow .2s; }
+    .button:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.25); }
+    .button-primary { color: #24152c; background: var(--gold-soft); }
+    .button-current { color: #fff; background: #e9689a; box-shadow: 0 8px 25px rgba(233,104,154,.2); }
+    .button-news { color: #2b0d18; background: var(--gold-soft); border: 1px solid var(--gold); }
+    .button-ghost { color: var(--ink); border: 1px solid var(--line); }
+    .crest-wrap { display: grid; place-items: center; position: relative; }
+    .crest-wrap::before { content: ""; position: absolute; width: 390px; height: 390px; border: 1px solid rgba(229,184,106,.27); border-radius: 50%; box-shadow: 0 0 110px rgba(132,81,227,.3), inset 0 0 80px rgba(121,78,202,.15); }
+    .crest-wrap::after { content: ""; position: absolute; width: 500px; height: 500px; border: 1px dashed rgba(255,255,255,.11); border-radius: 50%; animation: spin 34s linear infinite; }
+    .crest { width: min(100%, 350px); aspect-ratio: 1; object-fit: contain; position: relative; z-index: 1; filter: drop-shadow(0 24px 30px rgba(0,0,0,.55)); animation: logoOrbit 3.6s ease-in-out infinite; transition: transform .28s cubic-bezier(.2,.8,.2,1); }
+    .orbit-note { position: absolute; right: -5px; bottom: 35px; z-index: 2; padding: 11px 14px; background: rgba(15,12,30,.87); border: 1px solid var(--line); font-size: 11px; color: var(--muted); }
+    .orbit-note strong { color: var(--gold-soft); display: block; font-size: 17px; margin-top: 4px; }
+    .hero-rail { display:flex; align-items:center; gap:18px; margin-top:38px; color:var(--gold-soft); font:10px "DM Mono"; letter-spacing:.18em; text-transform:uppercase; }
+    .hero-rail::before, .hero-rail::after { content:""; height:1px; flex:1; background:linear-gradient(90deg, transparent, var(--gold)); }
+    .hero-rail::after { background:linear-gradient(90deg, var(--gold), transparent); }
+    .scroll-progress { position:fixed; top:0; left:0; z-index:10; width:100%; height:3px; transform:scaleX(0); transform-origin:left; background:linear-gradient(90deg,#9c284c,var(--gold-soft)); box-shadow:0 0 14px rgba(240,206,131,.65); }
+    .cursor-glow { position:fixed; z-index:1; width:280px; height:280px; left:0; top:0; pointer-events:none; border-radius:50%; opacity:0; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(240,206,131,.13), rgba(176,42,82,.06) 38%, transparent 70%); transition:opacity .35s; mix-blend-mode:screen; }
+    .reveal { opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+    .reveal.is-visible { opacity:1; transform:none; }
+    .panel, .news-story, .fun-card { transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
+    .panel:hover, .news-story:hover, .fun-card:hover { border-color:rgba(240,206,131,.45); box-shadow:0 18px 50px rgba(0,0,0,.2); }
+    .section { padding: 76px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 25px; }
+    h2 { font-size: 34px; letter-spacing: -.06em; margin: 10px 0 0; }
+    .section-head p { color: var(--muted); font-size: 13px; margin: 0; }
+    .dashboard { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
+    .fixtures { display: grid; gap: 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); backdrop-filter: blur(18px); }
+    .next-match { min-height: 295px; padding: 27px; position: relative; overflow: hidden; }
+    .fixture-next { min-height: 188px; }
+    .fixture-next .match-teams { margin: 28px 0 0; }
+    .next-match::after { content: "VS"; position: absolute; right: -8px; bottom: -47px; color: rgba(255,255,255,.035); font-size: 170px; font-weight: 700; letter-spacing: -.15em; }
+    .match-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; }
+    .live-status { color: #ff8d9a; font: 11px "DM Mono"; letter-spacing: .08em; }
+    .live-status i { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: #ff6175; box-shadow: 0 0 0 0 rgba(255,97,117,.7); animation: pulse 1.7s infinite; }
+    .match-teams { display: flex; align-items: center; justify-content: space-around; margin: 38px 0 27px; text-align: center; position: relative; z-index: 1; }
+    .team-name { font-size: 21px; font-weight: 600; max-width: 150px; } .team-name small { display:block; color: var(--muted); font: 11px "DM Mono"; margin-top: 6px; }
+    .vs { color: var(--gold); font: 20px "DM Mono"; }
+    .countdown { border-top: 1px solid var(--line); padding-top: 18px; display: flex; gap: 23px; color: var(--gold-soft); }
+    .countdown div { font: 22px "DM Mono"; } .countdown span { display: block; color: var(--muted); font: 9px "DM Mono"; margin-top: 3px; text-transform: uppercase; }
+    .live-updated { margin-top: 15px; color: #9ce8c0; font-size: 9px; letter-spacing: .05em; }
+    .live-updated span { color: var(--muted); margin-left: 5px; }
+    .standings { padding: 27px; min-width: 0; } .table-wrap { overflow-x: auto; } .table { width: 100%; min-width: 560px; border-collapse: collapse; margin-top: 18px; font-size: 12px; }
+    .table th { color: var(--muted); text-align: right; font: 9px "DM Mono"; font-weight: 400; padding: 0 4px 10px; white-space: nowrap; }
+    .table th:nth-child(2), .table td:nth-child(2) { text-align: left; }
+    .table td { border-top: 1px solid rgba(255,255,255,.09); padding: 11px 4px; text-align: right; white-space: nowrap; }
+    .table tr:first-of-type td { color: var(--gold-soft); } .table-pos { color: var(--muted); width: 28px; }
+    .table .highlight td { color: var(--gold-soft); background: rgba(164,124,255,.07); }
+    .table .highlight td:nth-child(2) { color: var(--violet); font-weight: 600; }
+    .table .penalty { display: inline-block; margin-left: 5px; padding: 2px 4px; border-radius: 4px; color: #fff; background: #ff6976; font: 9px "DM Mono"; }
+    .form { letter-spacing: 4px; color: var(--gold); font-size: 10px; }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .news-card { padding: 22px; min-height: 164px; transition: transform .2s, border-color .2s; }
+    .news-card:hover { transform: translateY(-5px); border-color: rgba(229,184,106,.55); }
+    .news-card .date { color: var(--violet); font: 10px "DM Mono"; }
+    .news-card h3 { font-size: 18px; line-height: 1.1; margin: 20px 0 11px; } .news-card p { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 0; }
+    .news-gallery { display:grid; grid-template-columns: 1.25fr .75fr .75fr; grid-template-rows: 240px 240px; gap: 14px; }
+    .news-story { position:relative; overflow:hidden; min-height:0; border:1px solid var(--line); background:#250b16; }
+    .news-story:first-child { grid-row: span 2; }
+    .news-story img { width:100%; height:100%; object-fit:cover; display:block; opacity:.82; transition: transform .45s, opacity .3s; }
+    .news-story:hover img { transform:scale(1.05); opacity:1; }
+    .news-story figcaption { position:absolute; left:0; right:0; bottom:0; padding:35px 16px 15px; background:linear-gradient(transparent,rgba(22,6,13,.95)); font-weight:600; }
+    .news-story figcaption small { display:block; color:var(--gold-soft); font:10px "DM Mono"; text-transform:uppercase; margin-bottom:7px; }
+    .lineup { display: grid; grid-template-columns: .72fr 1.28fr; gap: 18px; align-items: stretch; }
+    .lineup-copy { padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+    .lineup-copy h2 { margin-bottom: 15px; }
+    .lineup-copy p { color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .lineup-score { display: flex; align-items: baseline; gap: 12px; margin: 4px 0 4px; }
+    .lineup-score strong { color: var(--gold-soft); font: 32px "DM Mono"; }
+    .lineup-score span { color: var(--muted); font: 9px "DM Mono"; letter-spacing: .08em; }
+    .lineup-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px; margin: 18px 0 25px; color: var(--ink); font: 12px "DM Mono"; }
+    .lineup-list span::before { content: "●"; color: var(--gold); margin-right: 8px; font-size: 8px; }
+    .lineup-shot { overflow: hidden; min-height: 360px; position: relative; background: #061c14; }
+    .lineup-shot img { width: 100%; height: 100%; min-height: 360px; display: block; object-fit: cover; object-position: center 30%; }
+    .lineup-shot::after { content: "FORMAZIONE TITOLARE"; position: absolute; left: 18px; bottom: 16px; padding: 8px 10px; color: #fff; background: rgba(11,8,25,.82); border: 1px solid rgba(255,255,255,.2); font: 10px "DM Mono"; letter-spacing: .08em; }
+    .presidency { display:grid; grid-template-columns: 1.05fr .95fr; gap:18px; align-items:stretch; }
+    .presidency-photo { min-height:360px; overflow:hidden; border:1px solid var(--line); }
+    .presidency-photo img { width:100%; height:100%; min-height:360px; object-fit:cover; object-position:center 26%; display:block; }
+    .presidency-copy { padding:34px; display:flex; flex-direction:column; justify-content:center; }
+    .presidency-copy h2 { margin:12px 0 15px; }
+    .presidency-copy p { color:var(--muted); font-size:14px; line-height:1.7; max-width:420px; }
+    .president-names { display:flex; gap:28px; margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
+    .president-names strong { display:block; color:var(--gold-soft); font-size:15px; }
+    .president-names span { display:block; margin-top:5px; color:var(--muted); font:10px "DM Mono"; text-transform:uppercase; }
+    .sponsor-section { position:relative; overflow:hidden; padding:0; background:#061e52; border:1px solid rgba(73,190,255,.45); box-shadow:0 25px 80px rgba(0,9,40,.35); }
+    .sponsor-section::before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 18% 20%, rgba(36,183,255,.42), transparent 29rem), linear-gradient(120deg, rgba(5,35,99,.95), rgba(3,16,54,.88)); pointer-events:none; }
+    .sponsor-content { position:relative; z-index:1; display:grid; grid-template-columns:.8fr 1.2fr; min-height:580px; }
+    .sponsor-copy { padding:70px 50px; display:flex; flex-direction:column; justify-content:center; }
+    .sponsor-copy .eyebrow { color:#6dd8ff; }
+    .sponsor-copy h2 { color:#fff; font-size:clamp(42px,6vw,78px); line-height:.92; margin:18px 0; }
+    .sponsor-copy h2 em { color:#68d7ff; font-style:normal; }
+    .sponsor-copy p { max-width:400px; color:#c9e7ff; line-height:1.7; font-size:14px; }
+    .sponsor-logo { font-size:24px; font-weight:700; letter-spacing:-.05em; color:#fff; margin-top:25px; }
+    .sponsor-logo span { display:inline-block; margin-right:8px; color:#27d6ff; font-size:29px; }
+    .sponsor-photo { margin:0; min-height:580px; overflow:hidden; position:relative; }
+    .sponsor-photo img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; opacity:.88; }
+    .sponsor-photo::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#061e52 0%,transparent 40%), linear-gradient(0deg,rgba(2,15,48,.25),transparent 45%); pointer-events:none; }
+    .sponsor-button { color:#042052; background:#67dcff; border:0; }
+    .fun-gallery { display:grid; grid-template-columns:1.1fr .9fr .9fr; grid-template-rows:260px 260px; gap:14px; }
+    .fun-card { position:relative; overflow:hidden; border:1px solid var(--line); background:#250b16; min-height:0; }
+    .fun-card:first-child { grid-row:span 2; }
+    .fun-card img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .45s, filter .3s; }
+    .fun-card:hover img { transform:scale(1.06); filter:saturate(1.15); }
+    .fun-card::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(22,6,13,.9),transparent 48%); pointer-events:none; }
+    .fun-card figcaption { position:absolute; z-index:1; left:17px; right:17px; bottom:15px; color:#fff; font-weight:600; font-size:16px; }
+    .fun-card figcaption small { display:block; color:var(--gold-soft); font:10px "DM Mono"; letter-spacing:.09em; text-transform:uppercase; margin-bottom:6px; }
+    footer { border-top: 1px solid var(--line); padding: 25px 0 40px; display:flex; justify-content:space-between; color: var(--muted); font: 11px "DM Mono"; }
+    .modal { display: none; position: fixed; inset: 0; z-index: 5; place-items: center; background: rgba(4,3,12,.8); padding: 20px; }
+    .modal.is-open { display: grid; } .modal-box { max-width: 470px; padding: 30px; background: #17132f; border: 1px solid var(--gold); box-shadow: 0 20px 70px #000; }
+    .modal-box h2 { color: var(--gold-soft); margin-bottom: 12px; } .modal-box p { color: var(--muted); line-height: 1.6; font-size: 14px; }
+    .close { float: right; color: var(--muted); background: none; border: 0; font-size: 22px; }
+    @keyframes float { 50% { transform: translateY(-12px) rotate(1deg); } } @keyframes logoOrbit { 0%,100% { transform:translate3d(0,0,0) rotateZ(-2deg) rotateY(-4deg); } 25% { transform:translate3d(15px,-24px,0) rotateZ(4deg) rotateY(8deg); } 50% { transform:translate3d(-8px,-38px,0) rotateZ(-3deg) rotateY(-10deg); } 75% { transform:translate3d(-19px,-14px,0) rotateZ(5deg) rotateY(7deg); } } @keyframes spin { to { transform: rotate(360deg); } } @keyframes pulse { 70% { box-shadow: 0 0 0 7px rgba(255,97,117,0); } 100% { box-shadow: 0 0 0 0 rgba(255,97,117,0); } } @keyframes orbitLeft { to { transform: rotateX(67deg) rotateZ(376deg); } } @keyframes orbitRight { to { transform: rotateY(67deg) rotateZ(-378deg); } } @keyframes coreFloat { 50% { transform: translate3d(-18px,24px,30px) scale(1.08); } } @keyframes dustDrift { 50% { transform: translate3d(24vw, 36vh, 0) scale(1.7); opacity:.35; } } @keyframes dustBlink { 50% { opacity:.15; transform:scale(5); } } @keyframes backgroundBreathe { 0% { filter:saturate(.95) brightness(.94); } 100% { filter:saturate(1.12) brightness(1.04); } } @keyframes vortexOne { to { transform:rotate(360deg) scale(1.14); } } @keyframes vortexTwo { to { transform:rotate(-360deg) scale(.92); } } @keyframes beams { 0% { transform:translateX(-4%) rotate(-2deg); opacity:.32; } 100% { transform:translateX(5%) rotate(2deg); opacity:.68; } } @keyframes orbPulse { 50% { transform:rotateX(67deg) rotateZ(198deg) scale(1.16); box-shadow:0 0 85px rgba(240,206,131,.3), inset 0 0 55px rgba(240,206,131,.2); } } @keyframes sparkMove { to { background-position:91px 113px; } } @keyframes stadiumSpin { to { transform:translate(-50%,-50%) rotateX(66deg) rotateZ(360deg); } } @keyframes laserSweep { 0% { transform:scale(1) translateX(-3%); opacity:.22; } 100% { transform:scale(1.08) translateX(3%); opacity:.7; } }
+    @media (max-width: 800px) { nav { display: none; } .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 55px; } .hero-copy { order: 1; } .crest-wrap { order: 0; } .crest { width: 75%; } .crest-wrap::before { width: 270px; height: 270px; } .crest-wrap::after { width: 340px; height: 340px; } .dashboard, .news-grid, .lineup, .presidency, .sponsor-content { grid-template-columns: 1fr; } .pulse-strip { grid-template-columns:repeat(2,1fr); } .pulse-item:nth-child(2) { border-right:0; } .pulse-item:nth-child(-n+2) { border-bottom:1px solid var(--line); } .sponsor-copy { padding:48px 28px; } .sponsor-photo { min-height:420px; } .news-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 190px 190px; } .news-story:first-child { grid-column: span 2; grid-row: auto; } .fun-gallery { grid-template-columns:1fr 1fr; grid-template-rows:280px 210px 210px; } .fun-card:first-child { grid-column:span 2; grid-row:auto; } .section { padding: 52px 0; } }
+    @media (max-width: 460px) { .shell { width: min(100% - 28px, 1160px); } h1 { font-size: 54px; } .topbar { padding: 18px 0; } .hero-actions { flex-wrap: wrap; } .match-teams { margin-top: 30px; } .team-name { font-size: 17px; } footer { gap: 20px; flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="madness-bg" aria-hidden="true"><span class="light-beams"></span><span class="floating-orb"></span><span class="spark-field"></span><span class="stadium-tunnel"></span><span class="laser-lines"></span></div>
+  <div class="scene-3d" aria-hidden="true"><span class="scene-core"></span><span class="scene-dust"></span><span></span><span></span></div>
+  <header class="shell topbar">
+    <a class="brand" href="#"><img class="brand-mark" src="logo-space.png" alt="Logo NOTGP Herobrine"> NOTGP / 23</a>
+    <nav><a href="#club">Il club</a><a href="#match">Prossima sfida</a><a href="#news">Diario</a></nav>
+    <span class="eyebrow">Serie A · 2026/27</span>
+  </header>
+
+  <main>
+    <section class="shell hero" id="club">
+      <div class="hero-copy">
+        <div class="eyebrow">Not ordinary football</div>
+        <h1>insieme<br><em>per grandi obiettivi.</em></h1>
+        <p class="lead">NOTGP Herobrine non è solo una squadra di fantacalcio. È una lega parallela, un rituale del lunedì e la prova che anche le stelle possono avere un capitano.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#match">Scopri la sfida →</a><a class="button button-current" href="#current">ATTUALE ↘</a><a class="button button-news" href="#news">NOTIZIE ↘</a><a class="button sponsor-button" href="#sponsor">SPONSOR ↘</a><a class="button button-current" href="#fun">DIVERTIMENTO ↘</a></div>
+      </div>
+      <div class="crest-wrap">
+        <img class="crest" src="logo-main.png" alt="Logo NOTGP Herobrine Football Club">
+        <div class="orbit-note"><span class="mono">LEGA DS</span><strong>#02 / 12</strong></div>
+      </div>
+    </section>
+    <div class="shell hero-rail">NOTGP HEROBRINE <span>✦</span> FOOTBALL CLUB <span>✦</span> EST. 2023</div>
+
+    <section class="shell section reveal" id="fun">
+      <div class="section-head"><div><div class="eyebrow">Off the pitch · NOTGP</div><h2>Divertimento di squadra</h2></div><p class="mono">LA VITA È UNA TRASFERTA</p></div>
+      <div class="fun-gallery">
+        <figure class="fun-card"><img src="divertimento-motorini.png" alt="La squadra in motorino davanti allo stadio"><figcaption><small>Road trip</small>Quando la trasferta diventa leggenda.</figcaption></figure>
+        <figure class="fun-card"><img src="divertimento-festa.png" alt="La squadra festeggia insieme"><figcaption><small>Full time</small>Si festeggia come si gioca: insieme.</figcaption></figure>
+        <figure class="fun-card"><img src="divertimento-party.png" alt="La squadra a una festa"><figcaption><small>Club night</small>Granata, champagne e zero tattica.</figcaption></figure>
+        <figure class="fun-card"><img src="divertimento-lautaro.png" alt="Lautaro Martinez insieme ai presidenti"><figcaption><small>Family photo</small>Una squadra, una famiglia.</figcaption></figure>
+        <figure class="fun-card"><img src="divertimento-cena.png" alt="La squadra riunita a cena"><figcaption><small>Team dinner</small>Le partite si vincono anche a tavola.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="shell section reveal" id="sponsor">
+      <div class="sponsor-section">
+        <div class="sponsor-content">
+          <article class="sponsor-copy">
+            <div class="eyebrow">Official energy partner</div>
+            <div class="sponsor-logo"><span>✦</span> enilive</div>
+            <h2>Energia per<br><em>le tue sfide.</em></h2>
+            <p>La stessa energia che spinge i nostri campioni, accende il campo e accompagna ogni impresa di NOTGP Herobrine. Insieme, sempre in movimento.</p>
+            <a class="button sponsor-button" href="https://www.enilive.com/" target="_blank" rel="noopener noreferrer">Scopri la partnership →</a>
+          </article>
+          <figure class="sponsor-photo"><img src="sponsor-enilive.png" alt="I campioni di NOTGP Herobrine con Enilive"></figure>
+        </div>
+      </div>
+    </section>
+    <section class="shell pulse-strip reveal" aria-label="Numeri del club">
+      <div class="pulse-item"><strong>02</strong><span>Posizione in classifica</span></div>
+      <div class="pulse-item"><strong>09</strong><span>Punti conquistati</span></div>
+      <div class="pulse-item"><strong>3-4-3</strong><span>Modulo attuale</span></div>
+      <div class="pulse-item"><strong>∞</strong><span>Ambizione del club</span></div>
+    </section>
+
+    <section class="shell section reveal" id="match">
+      <div class="section-head"><div><div class="eyebrow">Mission control</div><h2>La prossima sfida</h2></div><p class="mono">Giornata 08 · 18 Ottobre</p></div>
+      <div class="dashboard">
+        <div class="fixtures">
+          <article class="panel next-match">
+            <div class="match-meta"><span class="mono">5ª GIORNATA · 5ª SERIE A</span><span class="live-status"><i></i> LIVE</span></div>
+            <div class="match-teams"><div class="team-name">NOTGP<small>HEROBRINE</small></div><div class="vs">VS</div><div class="team-name">F.C. SPINOSA<small>AWAY</small></div></div>
+          </article>
+          <article class="panel next-match fixture-next">
+            <div class="match-meta"><span class="mono">6ª GIORNATA · 6ª SERIE A</span><span class="mono">IN TRASFERTA</span></div>
+            <div class="match-teams"><div class="team-name">VIKINGS F.C.<small>HOME</small></div><div class="vs">VS</div><div class="team-name">NOTGP<small>HEROBRINE</small></div></div>
+          </article>
+        </div>
+        <article class="panel standings"><div class="eyebrow">Classifica attuale</div><div class="table-wrap"><table class="table"><thead><tr><th>#</th><th>SQUADRA</th><th>G</th><th>V</th><th>N</th><th>P</th><th>GF</th><th>GS</th><th>PT</th><th>PT TOTALI</th></tr></thead><tbody>
+          <tr><td class="table-pos">01</td><td>FC PARIS SAN NATALE</td><td>4</td><td>3</td><td>1</td><td>0</td><td>11</td><td>5</td><td>10</td><td>313.5</td></tr>
+          <tr class="highlight"><td class="table-pos">02</td><td>notgp</td><td>4</td><td>3</td><td>0</td><td>1</td><td>9</td><td>4</td><td>9</td><td>300</td></tr>
+          <tr><td class="table-pos">03</td><td>joga benito</td><td>4</td><td>2</td><td>1</td><td>1</td><td>9</td><td>7</td><td>7</td><td>303.5</td></tr>
+          <tr><td class="table-pos">04</td><td>OSABBINHO</td><td>4</td><td>2</td><td>1</td><td>1</td><td>6</td><td>5</td><td>7</td><td>282.5</td></tr>
+          <tr><td class="table-pos">05</td><td>F.C SPINOSA <span class="penalty">-1</span></td><td>4</td><td>2</td><td>0</td><td>2</td><td>8</td><td>10</td><td>5</td><td>297.5</td></tr>
+          <tr><td class="table-pos">06</td><td>THE KINGS</td><td>4</td><td>1</td><td>0</td><td>3</td><td>2</td><td>5</td><td>3</td><td>260</td></tr>
+          <tr><td class="table-pos">07</td><td>VIKINGS F.C.</td><td>4</td><td>0</td><td>2</td><td>2</td><td>3</td><td>6</td><td>2</td><td>265.5</td></tr>
+          <tr><td class="table-pos">08</td><td>minichiello</td><td>4</td><td>0</td><td>1</td><td>3</td><td>2</td><td>8</td><td>1</td><td>261.5</td></tr>
+        </tbody></table></div></article>
+      </div>
+    </section>
+
+    <section class="shell section reveal" id="current">
+      <div class="section-head"><div><div class="eyebrow">Matchday selection</div><h2>La formazione attuale</h2></div><p class="mono">NOTGP · 3-4-3</p></div>
+      <div class="lineup">
+        <article class="panel lineup-copy">
+          <div class="eyebrow">Titolari · parziale</div>
+          <h2>Questa è la nostra orbita.</h2>
+          <div class="lineup-score"><strong>0 — 0</strong><span>PARZIALE TITOLARI</span></div>
+          <p>La formazione schierata per la sfida contro F.C. Spinosa. Un 3-4-3 offensivo, con qualità tra le linee e nessuna intenzione di nascondersi.</p>
+          <div class="lineup-list"><span>Maignan</span><span>Gila</span><span>Bremer</span><span>De Winter</span><span>Njie</span><span>Barella</span><span>Frattesi</span><span>Atta</span><span>Kvernadze</span><span>Martinez L.</span><span>Pinamonti</span><span>Gonçalo Ramos</span><span>Diao</span><span>Woltemade</span></div>
+          <a class="button button-current" href="#match">Torna alla sfida →</a>
+        </article>
+        <figure class="panel lineup-shot"><img src="formazione-attuale.png" alt="Formazione attuale di NOTGP contro F.C. Spinosa"></figure>
+      </div>
+    </section>
+
+    <section class="shell section reveal" id="presidenza">
+      <div class="section-head"><div><div class="eyebrow">Leadership · NOTGP</div><h2>La presidenza</h2></div><p class="mono">EST. 2023</p></div>
+      <div class="presidency">
+        <figure class="panel presidency-photo"><img src="presidenti22.png" alt="I presidenti di NOTGP Herobrine"></figure>
+        <article class="panel presidency-copy">
+          <div class="eyebrow">Il club prima di tutto</div>
+          <h2>Due menti.<br><em>Una sola visione.</em></h2>
+          <p>La presidenza NOTGP Herobrine guida il progetto con ambizione, ironia e un unico obiettivo: portare il club sempre più in alto, dentro e fuori dal campo.</p>
+          <div class="president-names"><div><strong>Presidente (progp)</strong><span>Strategia &amp; visione</span></div><div><strong>Co-presidente (herobrine)</strong><span>Sport &amp; mercato</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section reveal" id="news">
+      <div class="section-head"><div><div class="eyebrow">Dal pianeta NOTGP</div><h2>Notizie</h2></div><p>Ultimi segnali ricevuti</p></div>
+      <div class="news-gallery">
+        <figure class="news-story"><img src="notizia-gazzetta.png" alt="La Gazzetta dello Sport celebra NOTGP Herobrine"><figcaption><small>La Gazzetta · 12 maggio 2025</small>Tre su tre: la squadra continua a sognare.</figcaption></figure>
+        <figure class="news-story"><img src="notizia-kessie.png" alt="Presentazione di Kessie al Football Center"><figcaption><small>Mercato · Ufficiale</small>Kessié veste granata.</figcaption></figure>
+        <figure class="news-story"><img src="notizia-analisi.png" alt="Lo staff analizza il profilo di Kessie"><figcaption><small>Scouting room</small>La cabina di regia studia il colpo.</figcaption></figure>
+        <figure class="news-story"><img src="conferenzastampa.png" alt="Conferenza stampa sul destino di Pinamonti"><figcaption><small>NOTGP HQ</small>Il destino di Pinamonti.</figcaption></figure>
+        <figure class="news-story"><img src="notizia-martinez.png" alt="Martinez presentato allo stadio"><figcaption><small>Stadio · Presentazione</small>Martinez, il nuovo numero 10.</figcaption></figure>
+      </div>
+    </section>
+  </main>
+  <footer class="shell"><span>© 2026 NOTGP HEROBRINE FOOTBALL CLUB</span><span>EST. 2023 · MADE FOR THE GAME</span></footer>
+  <script>
+    const progress = document.querySelector(".scroll-progress");
+    const crest = document.querySelector(".crest");
+    const crestWrap = document.querySelector(".crest-wrap");
+    const glow = document.querySelector(".cursor-glow");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+    window.addEventListener("pointermove", (event) => {
+      glow.style.left = `${event.clientX}px`;
+      glow.style.top = `${event.clientY}px`;
+      glow.style.opacity = "1";
+    });
+    document.addEventListener("mouseleave", () => { glow.style.opacity = "0"; });
+    window.addEventListener("scroll", () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+    }, { passive: true });
+    crestWrap.addEventListener("mousemove", (event) => {
+      const box = crestWrap.getBoundingClientRect();
+      const x = (event.clientX - box.left) / box.width - .5;
+      const y = (event.clientY - box.top) / box.height - .5;
+      crest.style.transform = `perspective(700px) translate3d(${x * 34}px, ${y * 28 - 12}px, 35px) rotateY(${x * 22}deg) rotateX(${y * -18}deg) rotateZ(${x * 5}deg) scale(1.04)`;
+    });
+    crestWrap.addEventListener("mouseleave", () => { crest.style.transform = ""; });
+  </script>
+</body>
+</html>
