@@ -151,6 +151,16 @@
     .news-story:hover img { transform:scale(1.05); opacity:1; }
     .news-story figcaption { position:absolute; left:0; right:0; bottom:0; padding:35px 16px 15px; background:linear-gradient(transparent,rgba(22,6,13,.95)); font-weight:600; }
     .news-story figcaption small { display:block; color:var(--gold-soft); font:10px "DM Mono"; text-transform:uppercase; margin-bottom:7px; }
+    .newspaper-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px; }
+    .newspaper-card { margin:0; overflow:hidden; border:1px solid var(--line); background:rgba(43,13,24,.82); }
+    .newspaper-card a { display:block; color:inherit; }
+    .newspaper-card img { width:100%; aspect-ratio:3 / 4; display:block; object-fit:cover; object-position:top center; transition:transform .55s ease, filter .35s ease; }
+    .newspaper-card:hover img { transform:scale(1.035); filter:saturate(1.08) contrast(1.03); }
+    .newspaper-caption { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:15px 18px 17px; }
+    .newspaper-caption strong { display:block; font:600 17px/1.1 "Bodoni Moda", Georgia, serif; }
+    .newspaper-caption small { display:block; margin-top:6px; color:var(--gold-soft); font:10px "DM Mono"; letter-spacing:.08em; text-transform:uppercase; }
+    .newspaper-arrow { color:var(--gold-soft); font:20px "DM Mono"; transition:transform .2s ease; }
+    .newspaper-card:hover .newspaper-arrow { transform:translateX(4px); }
     .lineup { display: grid; grid-template-columns: .72fr 1.28fr; gap: 18px; align-items: stretch; }
     .lineup-copy { padding: 30px; display: flex; flex-direction: column; justify-content: center; }
     .lineup-copy h2 { margin-bottom: 15px; }
@@ -200,7 +210,7 @@
     .modal-box h2 { color: var(--gold-soft); margin-bottom: 12px; } .modal-box p { color: var(--muted); line-height: 1.6; font-size: 14px; }
     .close { float: right; color: var(--muted); background: none; border: 0; font-size: 22px; }
     @keyframes float { 50% { transform: translateY(-12px) rotate(1deg); } } @keyframes logoOrbit { 0%,100% { transform:translate3d(0,0,0) rotateZ(-2deg) rotateY(-4deg); } 25% { transform:translate3d(15px,-24px,0) rotateZ(4deg) rotateY(8deg); } 50% { transform:translate3d(-8px,-38px,0) rotateZ(-3deg) rotateY(-10deg); } 75% { transform:translate3d(-19px,-14px,0) rotateZ(5deg) rotateY(7deg); } } @keyframes spin { to { transform: rotate(360deg); } } @keyframes pulse { 70% { box-shadow: 0 0 0 7px rgba(255,97,117,0); } 100% { box-shadow: 0 0 0 0 rgba(255,97,117,0); } } @keyframes orbitLeft { to { transform: rotateX(67deg) rotateZ(376deg); } } @keyframes orbitRight { to { transform: rotateY(67deg) rotateZ(-378deg); } } @keyframes coreFloat { 50% { transform: translate3d(-18px,24px,30px) scale(1.08); } } @keyframes dustDrift { 50% { transform: translate3d(24vw, 36vh, 0) scale(1.7); opacity:.35; } } @keyframes dustBlink { 50% { opacity:.15; transform:scale(5); } } @keyframes backgroundBreathe { 0% { filter:saturate(.95) brightness(.94); } 100% { filter:saturate(1.12) brightness(1.04); } } @keyframes vortexOne { to { transform:rotate(360deg) scale(1.14); } } @keyframes vortexTwo { to { transform:rotate(-360deg) scale(.92); } } @keyframes beams { 0% { transform:translateX(-4%) rotate(-2deg); opacity:.32; } 100% { transform:translateX(5%) rotate(2deg); opacity:.68; } } @keyframes orbPulse { 50% { transform:rotateX(67deg) rotateZ(198deg) scale(1.16); box-shadow:0 0 85px rgba(240,206,131,.3), inset 0 0 55px rgba(240,206,131,.2); } } @keyframes sparkMove { to { background-position:91px 113px; } } @keyframes stadiumSpin { to { transform:translate(-50%,-50%) rotateX(66deg) rotateZ(360deg); } } @keyframes laserSweep { 0% { transform:scale(1) translateX(-3%); opacity:.22; } 100% { transform:scale(1.08) translateX(3%); opacity:.7; } }
-    @media (max-width: 800px) { nav { display: none; } .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 55px; } .hero-copy { order: 1; } .crest-wrap { order: 0; } .crest { width: 75%; } .crest-wrap::before { width: 270px; height: 270px; } .crest-wrap::after { width: 340px; height: 340px; } .dashboard, .news-grid, .lineup, .presidency, .sponsor-content { grid-template-columns: 1fr; } .pulse-strip { grid-template-columns:repeat(2,1fr); } .pulse-item:nth-child(2) { border-right:0; } .pulse-item:nth-child(-n+2) { border-bottom:1px solid var(--line); } .sponsor-copy { padding:48px 28px; } .sponsor-photo { min-height:420px; } .news-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 190px 190px; } .news-story:first-child { grid-column: span 2; grid-row: auto; } .fun-gallery { grid-template-columns:1fr 1fr; grid-template-rows:280px 210px 210px; } .fun-card:first-child { grid-column:span 2; grid-row:auto; } .section { padding: 52px 0; } }
+    @media (max-width: 800px) { nav { display: none; } .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 55px; } .hero-copy { order: 1; } .crest-wrap { order: 0; } .crest { width: 75%; } .crest-wrap::before { width: 270px; height: 270px; } .crest-wrap::after { width: 340px; height: 340px; } .dashboard, .news-grid, .lineup, .presidency, .sponsor-content, .newspaper-grid { grid-template-columns: 1fr; } .pulse-strip { grid-template-columns:repeat(2,1fr); } .pulse-item:nth-child(2) { border-right:0; } .pulse-item:nth-child(-n+2) { border-bottom:1px solid var(--line); } .sponsor-copy { padding:48px 28px; } .sponsor-photo { min-height:420px; } .news-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 190px 190px; } .news-story:first-child { grid-column: span 2; grid-row: auto; } .fun-gallery { grid-template-columns:1fr 1fr; grid-template-rows:280px 210px 210px; } .fun-card:first-child { grid-column:span 2; grid-row:auto; } .section { padding: 52px 0; } }
     @media (max-width: 460px) { .shell { width: min(100% - 28px, 1160px); } h1 { font-size: 54px; } .topbar { padding: 18px 0; } .hero-actions { flex-wrap: wrap; } .match-teams { margin-top: 30px; } .team-name { font-size: 17px; } footer { gap: 20px; flex-direction: column; } }
   </style>
 </head>
@@ -211,7 +221,7 @@
   <div class="scene-3d" aria-hidden="true"><span class="scene-core"></span><span class="scene-dust"></span><span></span><span></span></div>
   <header class="shell topbar">
     <a class="brand" href="#"><img class="brand-mark" src="steam/logo-space.png" alt="Logo NOTGP Herobrine"> NOTGP / 23</a>
-    <nav><a href="#club">Il club</a><a href="#match">Prossima sfida</a><a href="#news">Diario</a></nav>
+    <nav><a href="#club">Il club</a><a href="#match">Prossima sfida</a><a href="steam/notizie.html">Notizie</a></nav>
     <span class="eyebrow">Serie A · 2026/27</span>
   </header>
 
@@ -221,7 +231,7 @@
         <div class="eyebrow">Not ordinary football</div>
         <h1>insieme<br><em>per grandi obiettivi.</em></h1>
         <p class="lead">NOTGP Herobrine non è solo una squadra di fantacalcio. È una lega parallela, un rituale del lunedì e la prova che anche le stelle possono avere un capitano.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#match">Scopri la sfida →</a><a class="button button-current" href="#current">ATTUALE ↘</a><a class="button button-news" href="#news">NOTIZIE ↘</a><a class="button sponsor-button" href="#sponsor">SPONSOR ↘</a><a class="button button-current" href="#fun">DIVERTIMENTO ↘</a></div>
+        <div class="hero-actions"><a class="button button-primary" href="#match">Scopri la sfida →</a><a class="button button-current" href="#current">ATTUALE ↘</a><a class="button button-news" href="steam/notizie.html">NOTIZIE ↗</a><a class="button sponsor-button" href="#sponsor">SPONSOR ↘</a><a class="button button-current" href="#fun">DIVERTIMENTO ↘</a></div>
       </div>
       <div class="crest-wrap">
         <img class="crest" src="steam/logo-main.png" alt="Logo NOTGP Herobrine Football Club">
@@ -296,7 +306,7 @@
           <h2>Questa è la nostra orbita.</h2>
           <div class="lineup-score"><strong>0 — 0</strong><span>PARZIALE TITOLARI</span></div>
           <p>La formazione schierata per la sfida contro F.C. Spinosa. Un 3-4-3 offensivo, con qualità tra le linee e nessuna intenzione di nascondersi.</p>
-          <div class="lineup-list"><span>Maignan</span><span>Gila</span><span>Bremer</span><span>De Winter</span><span>Njie</span><span>Barella</span><span>Frattesi</span><span>Atta</span><span>Kvernadze</span><span>Martinez L.</span><span>Pinamonti</span></span></div>
+          <div class="lineup-list"><span>Maignan</span><span>Gila</span><span>Bremer</span><span>De Winter</span><span>Njie</span><span>Barella</span><span>Frattesi</span><span>Atta</span><span>Kvernadze</span><span>Martinez L.</span><span>Pinamonti</span><span>Gonçalo Ramos</span><span>Diao</span><span>Woltemade</span></div>
           <a class="button button-current" href="#match">Torna alla sfida →</a>
         </article>
         <figure class="panel lineup-shot"><img src="steam/formazione-attuale.png" alt="Formazione attuale di NOTGP contro F.C. Spinosa"></figure>
@@ -316,16 +326,6 @@
       </div>
     </section>
 
-    <section class="shell section reveal" id="news">
-      <div class="section-head"><div><div class="eyebrow">Dal pianeta NOTGP</div><h2>Notizie</h2></div><p>Ultimi segnali ricevuti</p></div>
-      <div class="news-gallery">
-        <figure class="news-story"><img src="steam/notizia-gazzetta.png" alt="La Gazzetta dello Sport celebra NOTGP Herobrine"><figcaption><small>La Gazzetta · 12 maggio 2025</small>Tre su tre: la squadra continua a sognare.</figcaption></figure>
-        <figure class="news-story"><img src="steam/notizia-kessie.png" alt="Presentazione di Kessie al Football Center"><figcaption><small>Mercato · Ufficiale</small>Kessié veste granata.</figcaption></figure>
-        <figure class="news-story"><img src="steam/notizia-analisi.png" alt="Lo staff analizza il profilo di Kessie"><figcaption><small>Scouting room</small>La cabina di regia studia il colpo.</figcaption></figure>
-        <figure class="news-story"><img src="steam/conferenzastampa.png" alt="Conferenza stampa sul destino di Pinamonti"><figcaption><small>NOTGP HQ</small>Il destino di Pinamonti.</figcaption></figure>
-        <figure class="news-story"><img src="steam/notizia-martinez.png" alt="Martinez presentato allo stadio"><figcaption><small>Stadio · Presentazione</small>Martinez, il nuovo numero 10.</figcaption></figure>
-      </div>
-    </section>
   </main>
   <footer class="shell"><span>© 2026 NOTGP HEROBRINE FOOTBALL CLUB</span><span>EST. 2023 · MADE FOR THE GAME</span></footer>
   <script>
