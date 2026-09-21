@@ -3,57 +3,418 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Notizie · NOTGP Herobrine</title>
+  <title>Press Room · NOTGP Herobrine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,600;0,6..96,800;1,6..96,700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--ink:#f8efe5;--muted:#c2aeb0;--gold:#c99745;--gold-soft:#f0ce83;--line:rgba(226,181,101,.25);--panel:rgba(43,13,24,.82);--bg:#18070f}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bg);font-family:"Space Grotesk",sans-serif;overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 17% 16%,rgba(129,30,55,.42),transparent 28rem),radial-gradient(circle at 83% 24%,rgba(201,151,69,.12),transparent 30rem),linear-gradient(135deg,#16060d,#3b1020 52%,#10040a)}
-    body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.32;background-image:radial-gradient(#f0ce83 1px,transparent 1px);background-size:53px 53px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
-    .shell{width:min(1160px,calc(100% - 48px));margin:0 auto}.topbar{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid var(--line)}.brand{display:flex;gap:12px;align-items:center;color:var(--ink);font-weight:700;letter-spacing:.12em;text-decoration:none}.brand-mark{width:32px;height:32px;border:1px solid var(--gold);border-radius:50%;object-fit:cover}.eyebrow{color:var(--gold);font:11px "DM Mono";letter-spacing:.22em;text-transform:uppercase}nav{display:flex;gap:30px;font-size:13px}nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--gold-soft)}.mono{font-family:"DM Mono",monospace}
-    .intro{padding:92px 0 56px;max-width:780px}.intro h1{font:700 clamp(58px,9vw,116px)/.88 "Bodoni Moda",Georgia,serif;letter-spacing:-.07em;text-transform:uppercase;margin:18px 0 25px}.intro h1 em{display:block;color:var(--gold-soft);font-style:normal}.intro p{max-width:560px;color:var(--muted);font:500 15px/1.8 "Manrope",sans-serif}.button{display:inline-flex;margin-top:24px;padding:13px 20px;color:#2b0d18;background:var(--gold-soft);font-size:12px;font-weight:700;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
-    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px}.section-head h2{font-size:34px;letter-spacing:-.06em;margin:10px 0 0}.section-head p{color:var(--muted);font-size:13px}.newspaper-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.newspaper-card{margin:0;overflow:hidden;border:1px solid var(--line);background:var(--panel);transition:transform .35s,box-shadow .35s,border-color .35s}.newspaper-card:hover{transform:translateY(-7px);border-color:rgba(240,206,131,.55);box-shadow:0 18px 50px rgba(0,0,0,.3)}.newspaper-card a{display:block;color:inherit;text-decoration:none}.newspaper-card img{width:100%;aspect-ratio:3/4;display:block;object-fit:cover;object-position:top center;transition:transform .55s}.newspaper-card:hover img{transform:scale(1.035)}.caption{display:flex;justify-content:space-between;gap:15px;padding:16px 18px 18px}.caption strong{display:block;font:600 18px/1.1 "Bodoni Moda",Georgia,serif}.caption small{display:block;color:var(--gold-soft);font:10px "DM Mono";letter-spacing:.08em;margin-top:7px;text-transform:uppercase}.arrow{color:var(--gold-soft);font:20px "DM Mono"}
-    .sponsor{margin:80px 0;padding:40px;border:1px solid var(--line);background:linear-gradient(115deg,rgba(91,13,35,.95),rgba(31,7,17,.9));display:flex;align-items:center;justify-content:space-between;gap:30px}.sponsor h2{font:700 clamp(30px,5vw,58px)/.95 "Bodoni Moda",Georgia,serif;margin:13px 0}.sponsor h2 em{color:var(--gold-soft);font-style:normal}.sponsor p{max-width:560px;color:var(--muted);line-height:1.7}.gazzetta{color:#fff;font:700 clamp(28px,4vw,52px)/.9 Georgia,serif;text-align:right;white-space:nowrap}.gazzetta span{display:block;color:var(--gold-soft);font:10px "DM Mono";letter-spacing:.15em;margin-top:12px;text-transform:uppercase}footer{border-top:1px solid var(--line);padding:25px 0 40px;display:flex;justify-content:space-between;color:var(--muted);font:11px "DM Mono"}
-    @media(max-width:700px){.shell{width:min(100% - 28px,1160px)}nav{display:none}.intro{padding-top:58px}.newspaper-grid{grid-template-columns:1fr}.sponsor{padding:28px;display:block}.gazzetta{text-align:left;margin-top:30px}footer{gap:20px;flex-direction:column}}
+    :root {
+      --ink: #f8efe5;
+      --muted: #c2aeb0;
+      --gold: #c99745;
+      --gold-soft: #f0ce83;
+      --gold-neon: #ffd700;
+      --burgundy: #811e37;
+      --line: rgba(226, 181, 101, 0.3);
+      --panel: rgba(25, 7, 14, 0.75);
+      --bg: #0d0307;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Space Grotesk", sans-serif;
+      overflow-x: hidden;
+      perspective: 1000px;
+    }
+
+    /* === CANVAS SFONDO INTERATTIVO/ANIMATO === */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* SFUMATURE NEON DINAMICHE */
+    .glow-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: -1;
+      pointer-events: none;
+      animation: floatGlow 12s infinite alternate ease-in-out;
+    }
+    .orb-1 {
+      top: -10%;
+      left: 20%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(129,30,55,0.45) 0%, transparent 70%);
+    }
+    .orb-2 {
+      bottom: -10%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(201,151,69,0.2) 0%, transparent 70%);
+      animation-delay: -6s;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 60px) scale(1.15); }
+    }
+
+    /* === TRAMA DI SFONDO DI LUSSO === */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.12;
+      background-image: radial-gradient(var(--gold-soft) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* === NAVBAR === */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+    .brand:hover { transform: scale(1.03); }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(201,151,69,0.4);
+    }
+    .eyebrow {
+      color: var(--gold-soft);
+      font: 11px "DM Mono", monospace;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(240,206,131,0.3);
+    }
+    nav { display: flex; gap: 30px; font-size: 13px; }
+    nav a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    nav a:hover { color: var(--gold-soft); }
+
+    /* === HERO SECTION ANIMATA === */
+    .intro {
+      padding: 100px 0 60px;
+      max-width: 850px;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .intro h1 {
+      font: 800 clamp(56px, 9vw, 110px)/.88 "Bodoni Moda", Georgia, serif;
+      letter-spacing: -.05em;
+      text-transform: uppercase;
+      margin: 20px 0 25px;
+      background: linear-gradient(135deg, #fff 30%, var(--gold-soft) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .intro h1 em {
+      display: block;
+      font-style: italic;
+      color: var(--gold-neon);
+      -webkit-text-fill-color: initial;
+      text-shadow: 0 0 30px rgba(201,151,69,0.5);
+    }
+    .intro p {
+      max-width: 580px;
+      color: var(--muted);
+      font: 500 16px/1.8 "Manrope", sans-serif;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 14px 28px;
+      color: #18050e;
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 2px;
+      box-shadow: 0 10px 30px rgba(201, 151, 69, 0.3);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(201, 151, 69, 0.6);
+      background: #fff;
+    }
+
+    /* === TITOLI SEZIONI === */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 35px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 15px;
+    }
+    .section-head h2 {
+      font: 700 38px/1 "Bodoni Moda", serif;
+      letter-spacing: -.04em;
+      margin: 10px 0 0;
+    }
+
+    /* === GRIGLIA 3D CARD === */
+    .newspaper-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .newspaper-card {
+      margin: 0;
+      position: relative;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(15px);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s, box-shadow 0.4s;
+    }
+
+    /* EFFETTO GLOW HOVER */
+    .newspaper-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(240, 206, 131, 0.8), transparent 60%, rgba(129, 30, 55, 0.8));
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .newspaper-card:hover::before { opacity: 1; }
+
+    .newspaper-card:hover {
+      border-color: var(--gold-soft);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(201, 151, 69, 0.25);
+    }
+
+    .newspaper-card a {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .img-wrapper {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+
+    .newspaper-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+      filter: brightness(0.92) contrast(1.05);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
+    }
+
+    .newspaper-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(1) contrast(1.1);
+    }
+
+    /* CASSETTA INFORMAZIONI */
+    .caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 22px 24px;
+      background: rgba(13, 3, 7, 0.85);
+      border-top: 1px solid var(--line);
+    }
+    .caption strong {
+      display: block;
+      font: 700 20px/1.2 "Bodoni Moda", Georgia, serif;
+      letter-spacing: -.02em;
+    }
+    .caption small {
+      display: block;
+      color: var(--gold-soft);
+      font: 11px "DM Mono", monospace;
+      letter-spacing: .1em;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+    .arrow {
+      color: var(--gold-soft);
+      font: 24px "DM Mono";
+      transition: transform 0.4s;
+    }
+    .newspaper-card:hover .arrow {
+      transform: translate(4px, -4px) scale(1.2);
+      color: #fff;
+    }
+
+    /* === SPONSOR & FOOTER === */
+    .sponsor {
+      margin: 100px 0 80px;
+      padding: 50px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(80, 15, 35, 0.8), rgba(15, 3, 7, 0.95));
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+    .sponsor h2 { font: 800 clamp(32px, 5vw, 60px)/.95 "Bodoni Moda", serif; margin: 12px 0; }
+    .sponsor h2 em { color: var(--gold-soft); font-style: normal; }
+    
+    .gazzetta {
+      color: #fff;
+      font: 800 clamp(28px, 4vw, 52px)/.9 Georgia, serif;
+      text-align: right;
+      text-shadow: 0 0 20px rgba(240, 206, 131, 0.3);
+    }
+    .gazzetta span {
+      display: block;
+      color: var(--gold-soft);
+      font: 10px "DM Mono";
+      letter-spacing: .2em;
+      margin-top: 10px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font: 11px "DM Mono";
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 768px) {
+      .newspaper-grid { grid-template-columns: 1fr; }
+      .sponsor { padding: 30px; display: block; }
+      .gazzetta { text-align: left; margin-top: 30px; }
+      nav { display: none; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- CANVAS PER LE PARTICELLE DORATE ANIMATE -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
   <header class="shell topbar">
-    <a class="brand" href="index.html"><img class="brand-mark" src="steam/logo-space.png" alt="Logo NOTGP Herobrine"> NOTGP / 23</a>
-    <nav><a href="index.html">Home</a><a href="index.html#match">Prossima sfida</a><a href="notizie.html">Notizie</a></nav>
-    <span class="eyebrow">Press room</span>
+    <a class="brand" href="index.html">
+      <img class="brand-mark" src="steam/logo-space.png" alt="Logo NOTGP Herobrine"> NOTGP / 23
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#match">Prossima sfida</a>
+      <a href="notizie.html" style="color:var(--gold-soft);">Notizie</a>
+    </nav>
+    <span class="eyebrow">Press Room Official</span>
   </header>
+
   <main>
     <section class="shell intro">
-      <div class="eyebrow">Archivio editoriale · NOTGP</div>
+      <div class="eyebrow">Archivio editoriale · NOTGP HQ</div>
       <h1>I nostri<br><em>giornali.</em></h1>
-      <p>Le pagine che raccontano le vittorie, i protagonisti e i sogni del NOTGP Herobrine. Una piccola rassegna stampa, firmata dalla nostra redazione.</p>
+      <p>Le imprese, i colpi di mercato e i retroscena del NOTGP Herobrine scritti sui titoli di testa. Benvenuto nell'archivio stampa ufficiale.</p>
       <a class="button" href="index.html">← Torna alla home</a>
     </section>
     
+    <!-- PRIMA PAGINA / GIORNALI -->
     <section class="shell">
-      <div class="section-head"><div><div class="eyebrow">Edizioni speciali</div><h2>Le prime pagine</h2></div><p class="mono">CLICCA PER APRIRE</p></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Rassegna Stampa</div>
+          <h2>Le prime pagine</h2>
+        </div>
+        <p class="eyebrow">CLICCA PER APRIRE</p>
+      </div>
       <div class="newspaper-grid">
-        <figure class="newspaper-card"><a href="steam/giornale-notgp-1.png" target="_blank" rel="noopener noreferrer"><img src="steam/giornale-notgp-1.png" alt="Prima pagina dedicata alla quarta vittoria consecutiva di NOTGP Herobrine"><figcaption class="caption"><span><strong>Quarta vittoria di fila!</strong><small>La Gazzetta · 12 maggio 2025</small></span><span class="arrow">↗</span></figcaption></a></figure>
-        <figure class="newspaper-card"><a href="steam/giornale-notgp-2.png" target="_blank" rel="noopener noreferrer"><img src="steam/giornale-notgp-2.png" alt="Prima pagina dedicata alla terza vittoria consecutiva di NOTGP Herobrine"><figcaption class="caption"><span><strong>Tre su tre!</strong><small>Edizione speciale · 12 maggio 2025</small></span><span class="arrow">↗</span></figcaption></a></figure>
+        <figure class="newspaper-card">
+          <a href="steam/giornale-notgp-1.png" target="_blank" rel="noopener noreferrer">
+            <div class="img-wrapper"><img src="steam/giornale-notgp-1.png" alt="Quarta vittoria di fila"></div>
+            <figcaption class="caption">
+              <span><strong>Quarta vittoria di fila!</strong><small>La Gazzetta · 12 maggio 2025</small></span>
+              <span class="arrow">↗</span>
+            </figcaption>
+          </a>
+        </figure>
+        <figure class="newspaper-card">
+          <a href="steam/giornale-notgp-2.png" target="_blank" rel="noopener noreferrer">
+            <div class="img-wrapper"><img src="steam/giornale-notgp-2.png" alt="Tre su tre"></div>
+            <figcaption class="caption">
+              <span><strong>Tre su tre!</strong><small>Edizione speciale · 12 maggio 2025</small></span>
+              <span class="arrow">↗</span>
+            </figcaption>
+          </a>
+        </figure>
       </div>
     </section>
 
-    <!-- SEZIONE ANNUNCI GIOCATORI -->
-    <section class="shell" style="margin-top: 60px;">
+    <!-- ANNUNCI GIOCATORI -->
+    <section class="shell" style="margin-top: 80px;">
       <div class="section-head">
         <div>
           <div class="eyebrow">Calciomercato & Comunicati</div>
           <h2>Annunci giocatori</h2>
         </div>
-        <p class="mono">UFFICIALI</p>
+        <p class="eyebrow">UFFICIALI</p>
       </div>
       <div class="newspaper-grid">
         <figure class="newspaper-card">
           <a href="steam/kessie.jpg" target="_blank" rel="noopener noreferrer">
-            <img src="steam/kessie.jpg" alt="Presentazione ufficiale Kessié con maglia numero 79">
+            <div class="img-wrapper"><img src="steam/kessie.jpg" alt="Kessié"></div>
             <figcaption class="caption">
               <span><strong>Kessié veste granata</strong><small>Mercato · Ufficiale</small></span>
               <span class="arrow">↗</span>
@@ -62,7 +423,7 @@
         </figure>
         <figure class="newspaper-card">
           <a href="steam/pinamonti.jpg" target="_blank" rel="noopener noreferrer">
-            <img src="steam/pinamonti.jpg" alt="Conferenza stampa Pinamonti a rischio esclusione">
+            <div class="img-wrapper"><img src="steam/pinamonti.jpg" alt="Pinamonti"></div>
             <figcaption class="caption">
               <span><strong>Pinamonti a rischio esclusione?</strong><small>Conferenza Stampa · NOTGP HQ</small></span>
               <span class="arrow">↗</span>
@@ -71,7 +432,7 @@
         </figure>
         <figure class="newspaper-card">
           <a href="steam/martinez.jpg" target="_blank" rel="noopener noreferrer">
-            <img src="steam/martinez.jpg" alt="Lautaro Martinez nuovo numero 10">
+            <div class="img-wrapper"><img src="steam/martinez.jpg" alt="Martinez"></div>
             <figcaption class="caption">
               <span><strong>Martinez, il nuovo numero 10</strong><small>Presentazione · Stadio</small></span>
               <span class="arrow">↗</span>
@@ -80,7 +441,7 @@
         </figure>
         <figure class="newspaper-card">
           <a href="steam/notizia-analisi.jpg" target="_blank" rel="noopener noreferrer">
-            <img src="steam/notizia-analisi.jpg" alt="La cabina di regia studia il colpo Kessié">
+            <div class="img-wrapper"><img src="steam/notizia-analisi.jpg" alt="Analisi"></div>
             <figcaption class="caption">
               <span><strong>La cabina di regia studia il colpo</strong><small>Scouting Room · Analisi</small></span>
               <span class="arrow">↗</span>
@@ -90,11 +451,100 @@
       </div>
     </section>
 
+    <!-- SPONSOR -->
     <section class="shell sponsor">
-      <div><div class="eyebrow">Media partner · NOTGP</div><h2>La voce delle<br><em>nostre vittorie.</em></h2><p>Una pagina speciale per ogni impresa: perché le grandi squadre meritano grandi titoli.</p></div>
-      <div class="gazzetta">La Gazzetta<br>del NOTGP<span>Lo sport unisce le persone</span></div>
+      <div>
+        <div class="eyebrow">Media Partner · NOTGP</div>
+        <h2>La voce delle<br><em>nostre vittorie.</em></h2>
+        <p style="color:var(--muted); max-width: 500px; line-height: 1.7;">Una copertura mediatica senza precedenti per celebrare la storia del club.</p>
+      </div>
+      <div class="gazzetta">
+        La Gazzetta<br>del NOTGP
+        <span>LO SPORT UNISCE LE PERSONE</span>
+      </div>
     </section>
   </main>
-  <footer class="shell"><span>© 2026 NOTGP HEROBRINE FOOTBALL CLUB</span><span>PRESS ROOM · MADE FOR THE GAME</span></footer>
+
+  <footer class="shell">
+    <span>© 2026 NOTGP HEROBRINE FOOTBALL CLUB</span>
+    <span>PRESS ROOM · MADE FOR THE GAME</span>
+  </footer>
+
+  <!-- SCRIPT ANIMAZIONI PARTICELLE E TILT 3D -->
+  <script>
+    // === 1. SFONDO ANIMATO PARTICELLE DORATE ===
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedY = -(Math.random() * 0.6 + 0.2);
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.7 + 0.2;
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        if (this.y < 0) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = `rgba(240, 206, 131, ${this.opacity})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ffd700';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 65; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // === 2. EFFETTO INCLINAZIONE 3D (TILT) SULLE CARD ===
+    const cards = document.querySelectorAll('.newspaper-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+  </script>
 </body>
 </html>
