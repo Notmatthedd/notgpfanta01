@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Press Room · NOTGP Herobrine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +15,12 @@
       --gold-soft: #f0ce83;
       --gold-neon: #ffd700;
       --burgundy: #811e37;
-      --line: rgba(226, 181, 101, 0.3);
-      --panel: rgba(25, 7, 14, 0.75);
-      --bg: #0d0307;
+      --line: rgba(226, 181, 101, 0.35);
+      --panel: rgba(25, 7, 14, 0.82);
+      --bg: #0b0206;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; }
     
     body {
@@ -32,7 +32,7 @@
       perspective: 1000px;
     }
 
-    /* === CANVAS SFONDO INTERATTIVO/ANIMATO === */
+    /* === CANVAS SFONDO INTERATTIVO === */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -43,37 +43,38 @@
       pointer-events: none;
     }
 
-    /* SFUMATURE NEON DINAMICHE */
+    /* SFUMATURE NEON DINAMICHE PER PC E MOBILE */
     .glow-orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(80px);
       z-index: -1;
       pointer-events: none;
-      animation: floatGlow 12s infinite alternate ease-in-out;
+      animation: floatGlow 10s infinite alternate ease-in-out;
+      will-change: transform;
     }
     .orb-1 {
       top: -10%;
-      left: 20%;
-      width: 50vw;
-      height: 50vw;
-      background: radial-gradient(circle, rgba(129,30,55,0.45) 0%, transparent 70%);
+      left: 10%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, rgba(129,30,55,0.55) 0%, transparent 70%);
     }
     .orb-2 {
       bottom: -10%;
       right: -10%;
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, rgba(201,151,69,0.2) 0%, transparent 70%);
-      animation-delay: -6s;
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(circle, rgba(201,151,69,0.3) 0%, transparent 70%);
+      animation-delay: -5s;
     }
 
     @keyframes floatGlow {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, 60px) scale(1.15); }
+      100% { transform: translate(30px, 45px) scale(1.2); }
     }
 
-    /* === TRAMA DI SFONDO DI LUSSO === */
+    /* PATTERN DI LUSSO SULLO SFONDO */
     body::after {
       content: "";
       position: fixed;
@@ -81,12 +82,12 @@
       z-index: -1;
       opacity: 0.12;
       background-image: radial-gradient(var(--gold-soft) 1px, transparent 1px);
-      background-size: 36px 36px;
+      background-size: 32px 32px;
       pointer-events: none;
     }
 
     .shell {
-      width: min(1180px, calc(100% - 48px));
+      width: min(1180px, calc(100% - 36px));
       margin: 0 auto;
     }
 
@@ -95,9 +96,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 24px 0;
+      padding: 20px 0;
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
     .brand {
       display: flex;
@@ -107,16 +108,14 @@
       font-weight: 700;
       letter-spacing: .12em;
       text-decoration: none;
-      transition: transform 0.3s;
     }
-    .brand:hover { transform: scale(1.03); }
     .brand-mark {
       width: 36px;
       height: 36px;
       border: 1px solid var(--gold);
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 0 15px rgba(201,151,69,0.4);
+      box-shadow: 0 0 15px rgba(201,151,69,0.5);
     }
     .eyebrow {
       color: var(--gold-soft);
@@ -125,21 +124,21 @@
       text-transform: uppercase;
       text-shadow: 0 0 10px rgba(240,206,131,0.3);
     }
-    nav { display: flex; gap: 30px; font-size: 13px; }
+    nav { display: flex; gap: 25px; font-size: 13px; }
     nav a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
     nav a:hover { color: var(--gold-soft); }
 
     /* === HERO SECTION ANIMATA === */
     .intro {
-      padding: 100px 0 60px;
+      padding: 70px 0 45px;
       max-width: 850px;
       animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .intro h1 {
-      font: 800 clamp(56px, 9vw, 110px)/.88 "Bodoni Moda", Georgia, serif;
+      font: 800 clamp(48px, 9vw, 105px)/.88 "Bodoni Moda", Georgia, serif;
       letter-spacing: -.05em;
       text-transform: uppercase;
-      margin: 20px 0 25px;
+      margin: 18px 0 22px;
       background: linear-gradient(135deg, #fff 30%, var(--gold-soft) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -149,19 +148,19 @@
       font-style: italic;
       color: var(--gold-neon);
       -webkit-text-fill-color: initial;
-      text-shadow: 0 0 30px rgba(201,151,69,0.5);
+      text-shadow: 0 0 30px rgba(201,151,69,0.6);
     }
     .intro p {
       max-width: 580px;
       color: var(--muted);
-      font: 500 16px/1.8 "Manrope", sans-serif;
+      font: 500 15px/1.7 "Manrope", sans-serif;
     }
     .button {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-top: 28px;
-      padding: 14px 28px;
+      margin-top: 24px;
+      padding: 14px 26px;
       color: #18050e;
       background: linear-gradient(135deg, var(--gold-soft), var(--gold));
       font-size: 12px;
@@ -169,66 +168,68 @@
       letter-spacing: .12em;
       text-decoration: none;
       text-transform: uppercase;
-      border-radius: 2px;
-      box-shadow: 0 10px 30px rgba(201, 151, 69, 0.3);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 3px;
+      box-shadow: 0 10px 30px rgba(201, 151, 69, 0.35);
+      transition: all 0.3s ease;
     }
-    .button:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(201, 151, 69, 0.6);
-      background: #fff;
-    }
+    .button:active { transform: scale(0.97); }
 
     /* === TITOLI SEZIONI === */
     .section-head {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 15px;
+      padding-bottom: 12px;
     }
     .section-head h2 {
-      font: 700 38px/1 "Bodoni Moda", serif;
+      font: 700 clamp(28px, 6vw, 38px)/1 "Bodoni Moda", serif;
       letter-spacing: -.04em;
-      margin: 10px 0 0;
+      margin: 8px 0 0;
     }
 
-    /* === GRIGLIA 3D CARD === */
+    /* === GRIGLIA 3D CARD PER PC E TOUCH === */
     .newspaper-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 28px;
+      gap: 22px;
     }
 
     .newspaper-card {
       margin: 0;
       position: relative;
-      border-radius: 4px;
+      border-radius: 6px;
       border: 1px solid var(--line);
       background: var(--panel);
       backdrop-filter: blur(15px);
       overflow: hidden;
       transform-style: preserve-3d;
-      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s, box-shadow 0.4s;
+      will-change: transform;
+      transition: transform 0.25s ease-out, border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
     }
 
-    /* EFFETTO GLOW HOVER */
     .newspaper-card::before {
       content: "";
       position: absolute;
-      inset: -1px;
-      background: linear-gradient(135deg, rgba(240, 206, 131, 0.8), transparent 60%, rgba(129, 30, 55, 0.8));
+      inset: 0;
+      background: linear-gradient(135deg, rgba(240, 206, 131, 0.4), transparent 60%, rgba(129, 30, 55, 0.5));
       z-index: 1;
       opacity: 0;
-      transition: opacity 0.4s;
+      transition: opacity 0.3s;
       pointer-events: none;
     }
-    .newspaper-card:hover::before { opacity: 1; }
 
+    .newspaper-card.is-touching::before,
+    .newspaper-card:hover::before { 
+      opacity: 1; 
+    }
+
+    .newspaper-card.is-touching,
     .newspaper-card:hover {
       border-color: var(--gold-soft);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(201, 151, 69, 0.25);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(201, 151, 69, 0.35);
     }
 
     .newspaper-card a {
@@ -251,66 +252,59 @@
       display: block;
       object-fit: cover;
       object-position: top center;
-      filter: brightness(0.92) contrast(1.05);
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
+      transition: transform 0.5s ease-out;
     }
 
+    .newspaper-card.is-touching img,
     .newspaper-card:hover img {
-      transform: scale(1.06);
-      filter: brightness(1) contrast(1.1);
+      transform: scale(1.05);
     }
 
-    /* CASSETTA INFORMAZIONI */
     .caption {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      padding: 22px 24px;
-      background: rgba(13, 3, 7, 0.85);
+      gap: 12px;
+      padding: 18px 20px;
+      background: rgba(11, 2, 6, 0.9);
       border-top: 1px solid var(--line);
     }
     .caption strong {
       display: block;
-      font: 700 20px/1.2 "Bodoni Moda", Georgia, serif;
-      letter-spacing: -.02em;
+      font: 700 clamp(16px, 4vw, 20px)/1.2 "Bodoni Moda", Georgia, serif;
     }
     .caption small {
       display: block;
       color: var(--gold-soft);
-      font: 11px "DM Mono", monospace;
-      letter-spacing: .1em;
-      margin-top: 6px;
+      font: 10px "DM Mono", monospace;
+      letter-spacing: .08em;
+      margin-top: 5px;
       text-transform: uppercase;
     }
     .arrow {
       color: var(--gold-soft);
-      font: 24px "DM Mono";
-      transition: transform 0.4s;
-    }
-    .newspaper-card:hover .arrow {
-      transform: translate(4px, -4px) scale(1.2);
-      color: #fff;
+      font: 22px "DM Mono";
+      transition: transform 0.3s;
     }
 
     /* === SPONSOR & FOOTER === */
     .sponsor {
-      margin: 100px 0 80px;
-      padding: 50px;
+      margin: 80px 0 60px;
+      padding: 35px;
       border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(80, 15, 35, 0.8), rgba(15, 3, 7, 0.95));
-      border-radius: 4px;
+      background: linear-gradient(135deg, rgba(80, 15, 35, 0.85), rgba(11, 2, 6, 0.95));
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.6);
     }
-    .sponsor h2 { font: 800 clamp(32px, 5vw, 60px)/.95 "Bodoni Moda", serif; margin: 12px 0; }
+    .sponsor h2 { font: 800 clamp(28px, 5vw, 55px)/.95 "Bodoni Moda", serif; margin: 10px 0; }
     .sponsor h2 em { color: var(--gold-soft); font-style: normal; }
     
     .gazzetta {
       color: #fff;
-      font: 800 clamp(28px, 4vw, 52px)/.9 Georgia, serif;
+      font: 800 clamp(24px, 4vw, 48px)/.9 Georgia, serif;
       text-align: right;
       text-shadow: 0 0 20px rgba(240, 206, 131, 0.3);
     }
@@ -318,13 +312,13 @@
       display: block;
       color: var(--gold-soft);
       font: 10px "DM Mono";
-      letter-spacing: .2em;
-      margin-top: 10px;
+      letter-spacing: .18em;
+      margin-top: 8px;
     }
 
     footer {
       border-top: 1px solid var(--line);
-      padding: 30px 0 50px;
+      padding: 25px 0 40px;
       display: flex;
       justify-content: space-between;
       color: var(--muted);
@@ -332,21 +326,21 @@
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     @media(max-width: 768px) {
       .newspaper-grid { grid-template-columns: 1fr; }
-      .sponsor { padding: 30px; display: block; }
-      .gazzetta { text-align: left; margin-top: 30px; }
+      .sponsor { padding: 25px; display: block; }
+      .gazzetta { text-align: left; margin-top: 25px; }
       nav { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- CANVAS PER LE PARTICELLE DORATE ANIMATE -->
+  <!-- CANVAS PARTICELLE DORATE -->
   <canvas id="bg-canvas"></canvas>
   <div class="glow-orb orb-1"></div>
   <div class="glow-orb orb-2"></div>
@@ -360,7 +354,7 @@
       <a href="index.html#match">Prossima sfida</a>
       <a href="notizie.html" style="color:var(--gold-soft);">Notizie</a>
     </nav>
-    <span class="eyebrow">Press Room Official</span>
+    <span class="eyebrow">Press Room</span>
   </header>
 
   <main>
@@ -378,7 +372,7 @@
           <div class="eyebrow">Rassegna Stampa</div>
           <h2>Le prime pagine</h2>
         </div>
-        <p class="eyebrow">CLICCA PER APRIRE</p>
+        <p class="eyebrow">APRI GIORNALE</p>
       </div>
       <div class="newspaper-grid">
         <figure class="newspaper-card">
@@ -403,7 +397,7 @@
     </section>
 
     <!-- ANNUNCI GIOCATORI -->
-    <section class="shell" style="margin-top: 80px;">
+    <section class="shell" style="margin-top: 60px;">
       <div class="section-head">
         <div>
           <div class="eyebrow">Calciomercato & Comunicati</div>
@@ -456,7 +450,7 @@
       <div>
         <div class="eyebrow">Media Partner · NOTGP</div>
         <h2>La voce delle<br><em>nostre vittorie.</em></h2>
-        <p style="color:var(--muted); max-width: 500px; line-height: 1.7;">Una copertura mediatica senza precedenti per celebrare la storia del club.</p>
+        <p style="color:var(--muted); max-width: 500px; line-height: 1.6; font-size:14px;">Una copertura mediatica senza precedenti per celebrare la storia del club.</p>
       </div>
       <div class="gazzetta">
         La Gazzetta<br>del NOTGP
@@ -470,9 +464,9 @@
     <span>PRESS ROOM · MADE FOR THE GAME</span>
   </footer>
 
-  <!-- SCRIPT ANIMAZIONI PARTICELLE E TILT 3D -->
+  <!-- SCRIPT PARTICELLE ANIMATE E CONTROLLO TILT INTERATTIVO PER MOUSE E TOUCH/SMARTPHONE -->
   <script>
-    // === 1. SFONDO ANIMATO PARTICELLE DORATE ===
+    // === 1. SFONDO PARTICELLE DORATE FLUIDO ===
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -485,14 +479,12 @@
     resizeCanvas();
 
     class Particle {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 0.5;
-        this.speedY = -(Math.random() * 0.6 + 0.2);
+        this.speedY = -(Math.random() * 0.5 + 0.2);
         this.speedX = (Math.random() - 0.5) * 0.3;
         this.opacity = Math.random() * 0.7 + 0.2;
       }
@@ -503,7 +495,7 @@
       }
       draw() {
         ctx.fillStyle = `rgba(240, 206, 131, ${this.opacity})`;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 8;
         ctx.shadowColor = '#ffd700';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -511,39 +503,60 @@
       }
     }
 
-    for (let i = 0; i < 65; i++) {
+    const particleCount = window.innerWidth < 768 ? 35 : 65;
+    for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
+      particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
 
-    // === 2. EFFETTO INCLINAZIONE 3D (TILT) SULLE CARD ===
+    // === 2. EFFETTO TILT 3D PER MOUSE E TOUCH (TELEFONO) ===
     const cards = document.querySelectorAll('.newspaper-card');
+
+    function applyTilt(card, clientX, clientY) {
+      const rect = card.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -12;
+      const rotateY = ((x - centerX) / centerX) * 12;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    }
+
+    function resetTilt(card) {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+      card.classList.remove('is-touching');
+    }
+
     cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -10;
-        const rotateY = ((x - centerX) / centerX) * 10;
+      // Eventi Mouse (PC)
+      card.addEventListener('mousemove', (e) => applyTilt(card, e.clientX, e.clientY));
+      card.addEventListener('mouseleave', () => resetTilt(card));
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-      });
+      // Eventi Touch (Smartphone)
+      card.addEventListener('touchstart', (e) => {
+        card.classList.add('is-touching');
+        if (e.touches.length > 0) {
+          applyTilt(card, e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-      });
+      card.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          applyTilt(card, e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+
+      card.addEventListener('touchend', () => resetTilt(card));
+      card.addEventListener('touchcancel', () => resetTilt(card));
     });
   </script>
 </body>
