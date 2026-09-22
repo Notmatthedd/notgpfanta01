@@ -83,19 +83,25 @@
     h1 { font-family: "Bodoni Moda", Georgia, serif; font-size: clamp(58px, 8.6vw, 118px); font-weight: 700; line-height: .86; letter-spacing: -.055em; margin: 20px 0 28px; max-width: 700px; text-transform: uppercase; text-shadow: 0 10px 36px rgba(0,0,0,.32); }
     h1 em { color: var(--gold-soft); font-style: normal; display: block; font-size: 1.13em; letter-spacing: -.07em; text-shadow: 0 0 30px rgba(240,206,131,.23); }
     .lead { max-width: 455px; color: var(--muted); line-height: 1.8; font: 500 15px/1.8 "Manrope", sans-serif; letter-spacing: -.01em; }
-    .hero-actions { display: flex; gap: 12px; margin-top: 35px; align-items: center; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 35px; align-items: center; }
     .pulse-strip { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(48,12,25,.42); }
     .pulse-item { padding:18px 20px; border-right:1px solid var(--line); }
     .pulse-item:last-child { border-right:0; }
     .pulse-item strong { display:block; color:var(--gold-soft); font:22px "DM Mono"; }
     .pulse-item span { display:block; color:var(--muted); font:9px "DM Mono"; letter-spacing:.08em; margin-top:5px; text-transform:uppercase; }
     button, .button { font: inherit; cursor: pointer; }
-    .button { display: inline-flex; padding: 13px 20px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; border-radius: 2px; transition: transform .2s, box-shadow .2s; }
-    .button:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.25); }
-    .button-primary { color: #24152c; background: var(--gold-soft); }
-    .button-current { color: #fff; background: #e9689a; box-shadow: 0 8px 25px rgba(233,104,154,.2); }
-    .button-news { color: #2b0d18; background: var(--gold-soft); border: 1px solid var(--gold); }
-    .button-ghost { color: var(--ink); border: 1px solid var(--line); }
+    .button { position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 14px 19px; overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 5px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; box-shadow: 0 10px 24px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.25); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, filter .25s ease; }
+    .button::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.42) 48%, transparent 68%); transform: translateX(-130%); transition: transform .65s ease; }
+    .button::after { content: "↗"; margin-left: 12px; font-size: 14px; line-height: 1; transition: transform .25s ease; }
+    .button:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.55); box-shadow: 0 16px 34px rgba(0,0,0,.34), 0 0 24px rgba(240,206,131,.14); filter: saturate(1.1); }
+    .button:hover::before { transform: translateX(130%); }
+    .button:hover::after { transform: translate(3px,-2px); }
+    .button:active { transform: translateY(-1px) scale(.98); }
+    .button-primary { color: #24152c; background: linear-gradient(135deg, #ffe2a1, #c99745); }
+    .button-current { color: #2b0d18; background: linear-gradient(135deg, #f6d98d, #b9802f); box-shadow: 0 8px 25px rgba(201,151,69,.3); }
+    .button-news { color: #2b0d18; background: linear-gradient(135deg, #fff3c7, #d7a64f); border-color: rgba(255,224,155,.7); }
+    .sponsor-button { color: #2b0d18; background: linear-gradient(135deg, #e9c875, #a96d24); }
+    .button-ghost { color: var(--ink); border: 1px solid var(--line); background: rgba(255,255,255,.04); }
     .crest-wrap { display: grid; place-items: center; position: relative; }
     .crest-wrap::before { content: ""; position: absolute; width: 390px; height: 390px; border: 1px solid rgba(229,184,106,.27); border-radius: 50%; box-shadow: 0 0 110px rgba(132,81,227,.3), inset 0 0 80px rgba(121,78,202,.15); }
     .crest-wrap::after { content: ""; position: absolute; width: 500px; height: 500px; border: 1px dashed rgba(255,255,255,.11); border-radius: 50%; animation: spin 34s linear infinite; }
@@ -203,7 +209,7 @@
     .sponsor-photo { margin:0; min-height:580px; overflow:hidden; position:relative; }
     .sponsor-photo img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; opacity:.88; }
     .sponsor-photo::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#061e52 0%,transparent 40%), linear-gradient(0deg,rgba(2,15,48,.25),transparent 45%); pointer-events:none; }
-    .sponsor-button { color:#042052; background:#67dcff; border:0; }
+    .sponsor-button { color:#2b0d18; background:linear-gradient(135deg, #e9c875, #a96d24); border-color:rgba(255,224,155,.7); }
     .fun-gallery { display:grid; grid-template-columns:1.1fr .9fr .9fr; grid-template-rows:260px 260px; gap:14px; }
     .fun-card { position:relative; overflow:hidden; border:1px solid var(--line); background:#250b16; min-height:0; }
     .fun-card:first-child { grid-row:span 2; }
@@ -219,7 +225,8 @@
     .close { float: right; color: var(--muted); background: none; border: 0; font-size: 22px; }
     @keyframes float { 50% { transform: translateY(-12px) rotate(1deg); } } @keyframes logoOrbit { 0%,100% { transform:translate3d(0,0,0) rotateZ(-2deg) rotateY(-4deg); } 25% { transform:translate3d(15px,-24px,0) rotateZ(4deg) rotateY(8deg); } 50% { transform:translate3d(-8px,-38px,0) rotateZ(-3deg) rotateY(-10deg); } 75% { transform:translate3d(-19px,-14px,0) rotateZ(5deg) rotateY(7deg); } } @keyframes spin { to { transform: rotate(360deg); } } @keyframes pulse { 70% { box-shadow: 0 0 0 7px rgba(255,97,117,0); } 100% { box-shadow: 0 0 0 0 rgba(255,97,117,0); } } @keyframes orbitLeft { to { transform: rotateX(67deg) rotateZ(376deg); } } @keyframes orbitRight { to { transform: rotateY(67deg) rotateZ(-378deg); } } @keyframes coreFloat { 50% { transform: translate3d(-18px,24px,30px) scale(1.08); } } @keyframes dustDrift { 50% { transform: translate3d(24vw, 36vh, 0) scale(1.7); opacity:.35; } } @keyframes dustBlink { 50% { opacity:.15; transform:scale(5); } } @keyframes backgroundBreathe { 0% { filter:saturate(.95) brightness(.94); } 100% { filter:saturate(1.12) brightness(1.04); } } @keyframes vortexOne { to { transform:rotate(360deg) scale(1.14); } } @keyframes vortexTwo { to { transform:rotate(-360deg) scale(.92); } } @keyframes beams { 0% { transform:translateX(-4%) rotate(-2deg); opacity:.32; } 100% { transform:translateX(5%) rotate(2deg); opacity:.68; } } @keyframes orbPulse { 50% { transform:rotateX(67deg) rotateZ(198deg) scale(1.16); box-shadow:0 0 85px rgba(240,206,131,.3), inset 0 0 55px rgba(240,206,131,.2); } } @keyframes sparkMove { to { background-position:91px 113px; } } @keyframes stadiumSpin { to { transform:translate(-50%,-50%) rotateX(66deg) rotateZ(360deg); } } @keyframes laserSweep { 0% { transform:scale(1) translateX(-3%); opacity:.22; } 100% { transform:scale(1.08) translateX(3%); opacity:.7; } }
     @media (max-width: 800px) { nav { display: flex; gap: 0; margin-left: auto; } nav a { display: none; } nav a:last-child { display: inline-flex; padding: 9px 11px; border: 1px solid var(--gold); color: var(--gold-soft); border-radius: 2px; font: 10px "DM Mono"; letter-spacing: .08em; text-transform: uppercase; } .topbar > .eyebrow { display: none; } .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 55px; } .hero-copy { order: 1; position: relative; z-index: 3; } .hero-actions { position: relative; z-index: 4; } .button { touch-action: manipulation; } .crest-wrap { order: 0; } .crest { width: 75%; } .crest-wrap::before { width: 270px; height: 270px; } .crest-wrap::after { width: 340px; height: 340px; } .dashboard, .news-grid, .lineup, .presidency, .sponsor-content, .newspaper-grid { grid-template-columns: 1fr; } .pulse-strip { grid-template-columns:repeat(2,1fr); } .pulse-item:nth-child(2) { border-right:0; } .pulse-item:nth-child(-n+2) { border-bottom:1px solid var(--line); } .sponsor-copy { padding:48px 28px; } .sponsor-photo { min-height:420px; } .news-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 190px 190px; } .news-story:first-child { grid-column: span 2; grid-row: auto; } .fun-gallery { grid-template-columns:1fr 1fr; grid-template-rows:280px 210px 210px; } .fun-card:first-child { grid-column:span 2; grid-row:auto; } .section { padding: 52px 0; } }
-    @media (max-width: 460px) { .shell { width: min(100% - 28px, 1160px); } h1 { font-size: 54px; } .topbar { padding: 18px 0; } .hero-actions { flex-wrap: wrap; } .match-teams { margin-top: 30px; } .team-name { font-size: 17px; } footer { gap: 20px; flex-direction: column; } }
+    @media (max-width: 460px) { .shell { width: min(100% - 28px, 1160px); } h1 { font-size: 54px; } .topbar { padding: 18px 0; } .hero-actions { gap: 9px; } .hero-actions .button { flex: 1 1 calc(50% - 9px); min-width: 0; padding: 13px 10px; font-size: 10px; letter-spacing: .07em; } .hero-actions .button::after { margin-left: 7px; font-size: 12px; } .match-teams { margin-top: 30px; } .team-name { font-size: 17px; } footer { gap: 20px; flex-direction: column; } }
+    @media (prefers-reduced-motion: reduce) { .button, .button::before, .button::after { transition: none; } }
   </style>
 </head>
 <body>
@@ -239,7 +246,7 @@
         <div class="eyebrow">Not ordinary football</div>
         <h1>insieme<br><em>per grandi obiettivi.</em></h1>
         <p class="lead">NOTGP Herobrine non è solo una squadra di fantacalcio. È una lega parallela, un rituale del lunedì e la prova che anche le stelle possono avere un capitano.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#match">Scopri la sfida →</a><a class="button button-current" href="#current">ATTUALE ↘</a><a class="button button-news" href="notizie.html">NOTIZIE ↗</a><a class="button sponsor-button" href="#sponsor">SPONSOR ↘</a><a class="button button-current" href="#fun">DIVERTIMENTO ↘</a></div>
+        <div class="hero-actions"><a class="button button-primary" href="#match">Scopri la sfida</a><a class="button button-current" href="#current">Attuale</a><a class="button button-news" href="notizie.html">Notizie</a><a class="button sponsor-button" href="#sponsor">Sponsor</a><a class="button button-current" href="#fun">Divertimento</a></div>
       </div>
       <div class="crest-wrap">
         <img class="crest" src="steam/logo-main.png" alt="Logo NOTGP Herobrine Football Club">
@@ -267,7 +274,7 @@
             <div class="sponsor-logo"><span>✦</span> enilive</div>
             <h2>Energia per<br><em>le tue sfide.</em></h2>
             <p>La stessa energia che spinge i nostri campioni, accende il campo e accompagna ogni impresa di NOTGP Herobrine. Insieme, sempre in movimento.</p>
-            <a class="button sponsor-button" href="https://www.enilive.com/" target="_blank" rel="noopener noreferrer">Scopri la partnership →</a>
+            <a class="button sponsor-button" href="https://www.enilive.com/" target="_blank" rel="noopener noreferrer">Scopri la partnership</a>
           </article>
           <figure class="sponsor-photo"><img src="steam/sponsor-enilive.png" alt="I campioni di NOTGP Herobrine con Enilive"></figure>
         </div>
@@ -325,7 +332,7 @@
           <div class="lineup-score"><strong>0 — 0</strong><span>PARZIALE TITOLARI</span></div>
           <p>La formazione schierata per la sfida contro F.C. Spinosa. Un 3-4-3 offensivo, con qualità tra le linee e nessuna intenzione di nascondersi.</p>
           <div class="lineup-list"><span>Maignan</span><span>Gila</span><span>Bremer</span><span>De Winter</span><span>Njie</span><span>Barella</span><span>Frattesi</span><span>Atta</span><span>Kvernadze</span><span>Martinez L.</span><span>Pinamonti</span></div>
-          <a class="button button-current" href="#match">Torna alla sfida →</a>
+          <a class="button button-current" href="#match">Torna alla sfida</a>
         </article>
         <figure class="panel lineup-shot"><img src="steam/formazione-attuale.png" alt="Formazione attuale di NOTGP contro F.C. Spinosa"></figure>
       </div>
@@ -464,3 +471,4 @@
   </script>
 </body>
 </html>
+
