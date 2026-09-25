@@ -334,7 +334,21 @@
       .newspaper-grid { grid-template-columns: 1fr; }
       .sponsor { padding: 25px; display: block; }
       .gazzetta { text-align: left; margin-top: 25px; }
-      nav { display: none; }
+      nav {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.02);
+      }
     }
   </style>
 </head>
@@ -420,6 +434,15 @@
             <div class="img-wrapper"><img src="steam/pinamonti.jpg" alt="Pinamonti"></div>
             <figcaption class="caption">
               <span><strong>Pinamonti a rischio esclusione?</strong><small>Conferenza Stampa · NOTGP HQ</small></span>
+              <span class="arrow">↗</span>
+            </figcaption>
+          </a>
+        </figure>
+        <figure class="newspaper-card">
+          <a href="spogliatoio-kveranadze.png" target="_blank" rel="noopener noreferrer">
+            <div class="img-wrapper"><img src="spogliatoio-kveranadze.png" alt="Spogliatoio Kveranadze"></div>
+            <figcaption class="caption">
+              <span><strong>Kveranadze: il magazzino del campione</strong><small>Spogliatoio · Focus</small></span>
               <span class="arrow">↗</span>
             </figcaption>
           </a>
